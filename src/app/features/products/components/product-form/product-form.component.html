@@ -1,0 +1,87 @@
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="product-form">
+
+    <div class="form-grid">
+
+        <div class="form-group">
+
+            <label>ID</label>
+
+            <input type="text" formControlName="id" maxlength="10" />
+
+            <small *ngIf="hasError('id')">
+                {{ getErrorMessage('id') }}
+            </small>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Nombre</label>
+
+            <input type="text" formControlName="name" maxlength="100" />
+
+            <small *ngIf="hasError('name')">
+                {{ getErrorMessage('name') }}
+            </small>
+
+        </div>
+
+        <div class="form-group full-width">
+
+            <label>Descripci&oacute;n</label>
+
+            <input type="text" formControlName="description" maxlength="200" />
+
+            <small *ngIf="hasError('description')">
+                {{ getErrorMessage('description') }}
+            </small>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Logo</label>
+
+            <input type="text" formControlName="logo" />
+
+            <small *ngIf="hasError('logo')">
+                {{ getErrorMessage('logo') }}
+            </small>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Fecha Liberaci&oacute;n</label>
+
+            <input type="date" formControlName="date_release" [min]="today" />
+
+            <small *ngIf="hasError('date_release')">
+                {{ getErrorMessage('date_release') }}
+            </small>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Fecha Revisi&oacute;n</label>
+
+            <input type="date" formControlName="date_revision" />
+
+        </div>
+
+    </div>
+
+    <div class="actions">
+
+        <button type="button" class="secondary" (click)="onReset()">
+            Reiniciar
+        </button>
+
+        <button type="submit">
+            {{ isEditMode ? 'Guardar' : 'Agregar' }}
+        </button>
+
+    </div>
+
+</form>

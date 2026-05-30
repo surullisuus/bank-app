@@ -1,0 +1,16 @@
+<div
+  class="modal-backdrop"
+  *ngIf="visible"
+  (click)="close.emit()"
+>
+
+  <div
+    class="modal"
+    (click)="$event.stopPropagation()"
+  >
+
+    <ng-content></ng-content>
+
+  </div>
+
+</div>

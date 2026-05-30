@@ -1,0 +1,212 @@
+.product-list-container {
+  padding: 2rem;
+}
+
+.top-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+input {
+  width: 300px;
+  padding: 0.75rem;
+  border: 1px solid #dcdfe4;
+  border-radius: 6px;
+}
+
+button {
+  border: none;
+  padding: 0.75rem 1.5rem;
+  background-color: #ffdd00;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+}
+
+thead {
+  background-color: #f5f7fa;
+}
+
+th,
+td {
+  padding: 1rem;
+  border-bottom: 1px solid #ececec;
+  text-align: left;
+}
+
+img {
+  object-fit: contain;
+}
+
+.footer-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.loading,
+.error,
+.empty-state {
+  padding: 2rem;
+  text-align: center;
+}
+
+.error {
+  color: red;
+}
+
+.actions {
+  width: 80px;
+  text-align: center;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 8px;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+
+  display: none;
+  flex-direction: column;
+
+  min-width: 120px;
+
+  background: white;
+  border-radius: 8px;
+
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.12);
+
+  z-index: 100;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: flex;
+}
+
+.dropdown-menu button {
+  border: none;
+  background: white;
+  padding: 10px 16px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dropdown-menu button:hover {
+  background: #f3f4f6;
+}
+
+.tooltip {
+  position: relative;
+  cursor: pointer;
+  margin-left: 4px;
+}
+
+.tooltip-text {
+  visibility: hidden;
+
+  position: absolute;
+  bottom: 130%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 220px;
+
+  background: #111827;
+  color: white;
+
+  padding: 8px;
+  border-radius: 6px;
+
+  font-size: 12px;
+  text-align: center;
+
+  z-index: 100;
+}
+
+.tooltip:hover .tooltip-text {
+  visibility: visible;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  background: rgba(0, 0, 0, 0.5);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 9999;
+}
+
+.modal {
+  background: white;
+
+  width: 450px;
+  max-width: 90vw;
+
+  padding: 2rem;
+
+  border-radius: 12px;
+
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.15);
+
+  text-align: center;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+
+  margin-top: 2rem;
+}
+
+
+.secondary {
+  background-color: #f3f4f6;
+  color: #111827;
+}
+
+.secondary:hover {
+  background-color: #e5e7eb;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  margin-top: 1.5rem;
+}
+
+.pagination button {
+  min-width: 100px;
+}

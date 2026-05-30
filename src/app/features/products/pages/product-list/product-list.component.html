@@ -1,0 +1,192 @@
+<div class="product-list-container">
+
+  <div class="top-actions">
+
+    <input type="text" placeholder="Search..." (input)="onSearch($event)" />
+
+    <button routerLink="/products/create">
+      Agregar
+    </button>
+
+  </div>
+
+  <div *ngIf="loading" class="loading">
+    Loading products...
+  </div>
+
+  <div *ngIf="errorMessage" class="error">
+    {{ errorMessage }}
+  </div>
+
+  <table *ngIf="!loading && filteredProducts.length">
+
+    <thead>
+
+      <tr>
+        <th>Logo</th>
+        <th>Nombre del producto</th>
+        <th>
+          Descripci&oacute;n
+
+          <span class="tooltip">
+            ⓘ
+            <span class="tooltip-text">
+              Informaci&oacute;n general y características principales del producto.
+            </span>
+          </span>
+        </th>
+
+        <th>
+          Fecha liberaci&oacute;n
+
+          <span class="tooltip">
+            ⓘ
+            <span class="tooltip-text">
+              Fecha a partir de la cual el producto est&aacute; disponible.
+            </span>
+          </span>
+        </th>
+
+        <th>
+          Fecha revisi&oacute;n
+
+          <span class="tooltip">
+            ⓘ
+            <span class="tooltip-text">
+              Fecha programada para la revisi&oacute;n anual del producto.
+            </span>
+          </span>
+        </th>
+        <th></th>
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="
+  let product of paginatedProducts;
+  trackBy: trackByProduct
+">
+
+        <td>
+
+          <img [src]="'assets/images/' + product.logo" [alt]="product.name" width="50" />
+
+        </td>
+
+        <td>
+          {{ product.name }}
+        </td>
+
+        <td>
+          {{ product.description }}
+        </td>
+
+        <td>
+          {{ product.date_release }}
+        </td>
+
+        <td>
+          {{ product.date_revision }}
+        </td>
+
+        <td class="actions">
+
+          <div class="dropdown">
+
+            <button type="button" class="dropdown-button">
+              ⋮
+            </button>
+
+            <div class="dropdown-menu">
+
+              <button [routerLink]="[
+          '/products/edit',
+          product.id
+        ]">
+                Editar
+              </button>
+
+              <button (click)="openDeleteModal(product)">
+                Eliminar
+              </button>
+
+            </div>
+
+          </div>
+
+        </td>
+
+      </tr>
+
+    </tbody>
+
+  </table>
+
+  <div class="pagination" *ngIf="totalPages > 1">
+
+    <button (click)="previousPage()" [disabled]="currentPage === 1">
+      ← Anterior
+    </button>
+
+    <span>
+      P&aacute;gina {{ currentPage }}
+      de {{ totalPages }}
+    </span>
+
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+      Siguiente →
+    </button>
+
+  </div>
+
+  <div *ngIf="
+      !loading &&
+      !filteredProducts.length
+    " class="empty-state">
+    No products found
+  </div>
+
+  <div class="footer-actions">
+
+    <span>
+      Mostrando
+      {{ paginatedProducts.length }}
+      de
+      {{ filteredProducts.length }}
+      resultados
+    </span>
+
+    <select (change)="onItemsPerPageChange($event)">
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="20">20</option>
+    </select>
+
+  </div>
+
+</div>
+
+<app-modal [visible]="showDeleteModal" (close)="closeDeleteModal()">
+
+  <h3 style="text-align: center;">Eliminar producto</h3>
+
+  <p>
+    ¿Est&aacute;s seguro de eliminar el producto
+    <strong>{{ selectedProduct?.name }}</strong>?
+  </p>
+
+  <div class="modal-actions">
+
+    <button class="secondary" (click)="closeDeleteModal()">
+      Cancelar
+    </button>
+
+    <button (click)="deleteProduct()">
+      Eliminar
+    </button>
+
+  </div>
+
+</app-modal>
