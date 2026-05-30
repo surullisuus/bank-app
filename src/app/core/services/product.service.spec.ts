@@ -176,5 +176,41 @@ const mockResponse = [
       }
     ]);
   });
+
+  it('should get product by id when exists', () => {
+  const mockProducts = [
+    {
+      id: 'uno',
+      name: 'Producto Uno',
+      description: 'Descripción producto',
+      logo: 'logo.png',
+      date_release: '2025-01-01',
+      date_revision: '2026-01-01'
+    }
+  ];
+
+  service.getProductById('uno').subscribe(product => {
+    expect(product.id).toBe('uno');
+  });
+
+  const req = httpMock.expectOne(`${environment.apiUrl}/bp/products`);
+  req.flush({ data: mockProducts });
+});
+
+it('should throw error when product not found', () => {
+  let errorThrown = false;
+
+  service.getProductById('no-existe').subscribe({
+    error: (err) => {
+      errorThrown = true;
+      expect(err.message).toBe('Product not found');
+    }
+  });
+
+  const req = httpMock.expectOne(`${environment.apiUrl}/bp/products`);
+  req.flush({ data: [] });
+
+  expect(errorThrown).toBeTrue();
+});
 });
 
